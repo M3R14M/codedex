@@ -110,6 +110,24 @@ a:hover {
     color: var(--highlight-colour);
 }
 
+@-moz-document url-prefix() {
+
+    my-name, h1 {
+        display: block;
+        text-decoration: none;
+        border: 2px dashed var(--highlight-colour);
+        padding-block: .5em;
+        border-inline: none;
+        line-height: 0;
+        width: fit-content;
+        margin-inline: auto;
+        margin-top: calc(1rem + 5vh);
+    }
+
+    my-name:hover::after {
+        content: "\2006\2006.Mer\2006\2006";
+}
+}
 /* LAYOUT */
 
 body {
