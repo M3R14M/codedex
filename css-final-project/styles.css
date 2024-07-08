@@ -28,7 +28,10 @@ html {
     box-sizing: border-box;
 
 }
-
+::selection {
+    background: var(--accent-colour);
+    color: var(--text-colour);
+}
 /* TYPOGRAPHY */
 
 a {
@@ -299,6 +302,13 @@ article header p {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border-colour);
+}
+
+@-moz-document url-prefix() {
+    .container {
+        scrollbar-color: var(--border-colour) var(--bg-colour);
+        scrollbar-width: thin;
+    }
 }
 
 /* MEDIA RULES */
