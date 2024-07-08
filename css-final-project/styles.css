@@ -1,0 +1,321 @@
+/* BASE */
+
+:root {
+    --base-font: 'Courier New',
+        Courier,
+        monospace;
+    --bg-colour: #1A1A1F;
+    --bg-colour-light: #2A2A2F;
+    --bg-colour-sheer: #1A1A1FAA;
+    --text-colour: #E8E8E6;
+    --highlight-colour: #0CC;
+    --border-colour: #088;
+    --accent-colour: #C0C;
+    --base-cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABFklEQVRYR9WXURLDIAhE6/0PbSdOtUpcd1Gnpv1KGpTHBpCE1/cXq+vrMph7dGvXZTtpfW10DCA5jrH1H0Jhs5E0hnZdCR+vb5S8Nn8mQCeS9BdSalYJqMBjAGzq59xAESN7VFVUgV8AZB/dZBR7QTFDCqGquvUBVVoEtgIwpQRzmANSFHgWQKExHdIrPeuMvQNDarXe6nC/AutgV3JW+6bgqQLeV8FekRtgV+ToDKEKnACYKsfZjjkam7a0ZpYTytwmgainpC3HvwBocgKOxqRjehoR9DFKNFYtOwCGYCszobeCbl26N6yyQ6g8X/Wex/rBPsNEV6qAMaJPMynIHQCoSqS9JSMmwef51LflTgCRszU7DvAGiV6mHWfsaVUAAAAASUVORK5CYII="),
+        auto;
+    --link-cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC") 14 0,
+        pointer;
+}
+
+html {
+    background: var(--bg-colour);
+    color: var(--text-colour);
+    font-family: var(--base-font);
+    cursor: var(--base-cursor);
+}
+
+* {
+    box-sizing: border-box;
+
+}
+
+/* TYPOGRAPHY */
+
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: var(--link-cursor);
+}
+
+a:where(:focus, :active, :hover) {
+    color: var(--text-highlight);
+}
+
+nav>a {
+    padding: 0 2em;
+}
+
+my-name,
+h1 {
+    width: 100%;
+    display: inline-block;
+    color: var(--bg-colour);
+    font-size: 3rem;
+    font-weight: 600;
+    text-decoration: overline underline var(--highlight-colour) dashed 2px;
+    text-underline-offset: 0.25em;
+    text-shadow: -1px -1px 3px var(--highlight-colour), 1px 1px 3px var(--accent-colour);
+    text-align: center;
+    margin: 1rem 0 2rem;
+}
+
+my-name:hover,
+h1:hover {
+    text-shadow: none;
+    color: var(--border-colour);
+    font-weight: 300;
+}
+
+my-name:after {
+    content: "\00a0M3R14M\00a0"
+}
+
+my-name:hover:after {
+    content: "\2004\2004\2004\2004\2006Mer\2004\2004\2004\2004\2006";
+    text-shadow: none;
+    color: var(--border-colour);
+}
+
+h2 {
+    font-size: 1.5rem;
+    text-decoration: underline var(--border-colour) dashed 2px;
+    text-underline-offset: 0.5rem;
+    margin-top: 0;
+}
+
+h2:has(.splash):hover,
+h2:has(.splash):hover .splash,
+.splash:hover {
+    color: var(--accent-colour);
+}
+
+a {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    color: var(--highlight-colour);
+}
+
+[data-active] {
+    color: var(--accent-colour);
+}
+
+.splash {
+    font-size: inherit;
+    color: var(--highlight-colour);
+}
+
+/* LAYOUT */
+
+body {
+    background: var(--bg-colour);
+    margin: 0;
+}
+
+.container {
+    max-width: 666px;
+    margin: 0 auto;
+    border-left: 3px dashed var(--border-colour);
+    border-right: 3px dashed var(--border-colour);
+    height: 100dvh;
+    overflow-y: scroll;
+    box-sizing: content-box;
+}
+
+nav {
+    text-align: center;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 666px;
+    padding: 1em;
+    height: 5vh;
+    position: fixed;
+    background: var(--bg-colour-sheer);
+}
+
+.content {
+    min-height: 85%;
+    width: 100%;
+    margin: 5vh 0 10vh;
+}
+
+footer {
+    height: 10vh;
+    background: linear-gradient(transparent, var(--bg-colour-light));
+    width: 100%;
+    max-width: 666px;
+    position: fixed;
+    bottom: 0;
+}
+
+footer div {
+    text-align: center;
+    margin: 0 auto;
+    padding: 5vh 0 0 0;
+}
+
+.content:has(my-name) {
+    padding-inline: 5em;
+}
+
+/* MAIN PAGE */
+
+img {
+    margin-top: 0.5em;
+    width: 20rem;
+    border: 1px solid #e8e8e8;
+}
+
+.about-me,
+.series,
+.hobby,
+.random {
+    width: 66.6%;
+    padding-block: 1em;
+}
+
+.about-me,
+.series {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.hobby,
+.random {
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+}
+
+/* LISTS */
+
+ul {
+    list-style: none;
+}
+
+ul>li::after {
+    content: "\2665";
+    color: var(--border-colour);
+    display: inline-block;
+    width: 1em;
+    margin-right: -1em;
+    margin-left: 0.25em;
+}
+
+ul>li {
+    padding-right: 2em;
+}
+
+ol {
+    list-style: none;
+    counter-reset: li;
+}
+
+ol>li::before {
+    content: counter(li);
+    color: var(--highlight-colour);
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    margin-right: 0.25em;
+}
+
+ol>li {
+    counter-increment: li;
+}
+
+/* HEART ICON (NES.CSS) */
+
+heart-icon {
+    position: relative;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+}
+
+heart-icon::before {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    display: block;
+    content: "";
+    background: 0 0;
+    width: 1px;
+    height: 1px;
+    color: var(--accent-colour);
+    box-shadow: 3px 2px #0001, 4px 2px #0001, 5px 2px #0001, 11px 2px #0001, 12px 2px #0001, 13px 2px #0001, 2px 3px #0001, 3px 3px, 4px 3px, 5px 3px, 6px 3px #0001, 10px 3px #0001, 11px 3px, 12px 3px, 13px 3px #840079, 14px 3px #0001, 1px 4px #0001, 2px 4px, 3px 4px #fff, 4px 4px #fff, 5px 4px, 6px 4px, 7px 4px #0001, 9px 4px #0001, 10px 4px, 11px 4px, 12px 4px, 13px 4px, 14px 4px #840079, 15px 4px #0001, 1px 5px #0001, 2px 5px, 3px 5px #fff, 4px 5px, 5px 5px, 6px 5px, 7px 5px, 8px 5px #0001, 9px 5px, 10px 5px, 11px 5px, 12px 5px, 13px 5px, 14px 5px #840079, 15px 5px #0001, 1px 6px #0001, 2px 6px, 3px 6px, 4px 6px, 5px 6px, 6px 6px, 7px 6px, 8px 6px, 9px 6px, 10px 6px, 11px 6px, 12px 6px, 13px 6px, 14px 6px #840079, 15px 6px #0001, 1px 7px #0001, 2px 7px, 3px 7px, 4px 7px, 5px 7px, 6px 7px, 7px 7px, 8px 7px, 9px 7px, 10px 7px, 11px 7px, 12px 7px, 13px 7px, 14px 7px #840079, 15px 7px #0001, 1px 8px #0001, 2px 8px, 3px 8px, 4px 8px, 5px 8px, 6px 8px, 7px 8px, 8px 8px, 9px 8px, 10px 8px, 11px 8px, 12px 8px, 13px 8px, 14px 8px #840079, 15px 8px #0001, 2px 9px #0001, 3px 9px, 4px 9px, 5px 9px, 6px 9px, 7px 9px, 8px 9px, 9px 9px, 10px 9px, 11px 9px, 12px 9px, 13px 9px #840079, 14px 9px #0001, 3px 10px #0001, 4px 10px, 5px 10px, 6px 10px, 7px 10px, 8px 10px, 9px 10px, 10px 10px, 11px 10px, 12px 10px #840079, 13px 10px #0001, 4px 11px #0001, 5px 11px, 6px 11px, 7px 11px, 8px 11px, 9px 11px, 10px 11px, 11px 11px #840079, 12px 11px #0001, 5px 12px #0001, 6px 12px, 7px 12px, 8px 12px, 9px 12px, 10px 12px #840079, 11px 12px #0001, 6px 13px #0001, 7px 13px, 8px 13px, 9px 13px #840079, 10px 13px #0001, 7px 14px #0001, 8px 14px #840079, 9px 14px #0001, 8px 15px #0001;
+}
+
+/* BLOG */
+
+article {
+    padding: 0.5em 2em;
+    margin: 2em;
+}
+
+article {
+    background-color: var(--bg-colour-light);
+}
+
+article header {
+    padding-top: 1.25rem;
+}
+
+article header h2 {
+    text-decoration: none;
+}
+
+article header p {
+    font-size: 0.9em;
+    font-style: italic;
+    border-bottom: 1px dashed var(--border-colour);
+    padding-bottom: 1em;
+    margin-bottom: 2em;
+    text-align: right;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--bg-colour);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-colour);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-colour-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-colour);
+}
+
+/* MEDIA RULES */
+
+@media (max-width: 600px) {
+
+    .content:has(my-name) {
+        padding-inline: 1em;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .about-me,
+    .series,
+    .hobby,
+    .random {
+        width: 100%;
+    }
+}
