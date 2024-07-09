@@ -97,7 +97,7 @@ function create() {
   messageToPlayer = this.add.text(
     config.width / 2, // For centering with setOrigin
     550,
-    'Instructions: Press space bar to start',
+    'Press space bar to start',
     {
       fontFamily: 'Courier New, monospace',
       fontStyle: 'bold',
