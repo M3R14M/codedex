@@ -1,0 +1,54 @@
+#quote-box {
+  background: #fff;
+  color: var(--main-color);
+  padding: 2.5em 3.25em;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 1s;
+}
+
+#quote-box .quote-text {
+  font-size: 1.75rem;
+}
+
+#quote-box .quote-text svg {
+  margin-right: 0.5em;
+}
+
+#quote-box .quote-text p {
+  text-align: end;
+  font-size: 1rem;
+  margin-top: 1em;
+}
+
+#quote-box .quote-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+  font-size: 0.85rem;
+}
+
+#quote-box .btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75em 1.5em;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--main-color);
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+#quote-box .btn:has(svg) {
+  padding-inline: 0.75em;
+  font-size: 1rem;
+}
+
+#quote-box .btn:where(:hover, :focus) {
+  outline: none;
+  opacity: 0.9;
+  scale: 1.05;
+}
