@@ -6,6 +6,7 @@ function QuoteGenerator({ changeColor }) {
   const [currentQuote, setCurrentQuote] = useState(null);
   const [author, setAuthor] = useState(null);
   const [color, setColor] = useState(null);
+  const [error, setError] = useState({attempts: 5, message: ''});
 
   function getColor(currentColor) {
     const colors = [
@@ -31,16 +32,34 @@ function QuoteGenerator({ changeColor }) {
   }
 
   async function generateQuote() {
-    const response = await fetch(
-      'https://api.quotable.io/random?tags=technology&maxLength=100'
-    );
-    const data = await response.json();
-    setCurrentQuote(data.content);
-    setAuthor(data.author);
+    try {
+      const response = await fetch(
+        'http://api.quotable.io/random?tags=technology&maxLength=100'
+      );
+      const data = await response.json();
+      setCurrentQuote(data.content);
+      setAuthor(data.author);
 
-    const newColor = getColor(color);
-    setColor(newColor);
-    changeColor(newColor);
+      const newColor = getColor(color);
+      setColor(newColor);
+      changeColor(newColor);
+    } catch (err) {
+      if (err.message === 'Failed to fetch') {    
+        setError((prev) => {
+          if (prev.attempts > 0) {
+            return { attempts: prev.attempts - 1, message: <>{err.message}<p>Attempting new connection...</p></> };
+          } else {
+            return { ...prev, message: <>{err.message}<p>Please report the issue on <a href='https://github.com/M3R14M/codedex/issues' target='_blank'>GitHub</a> for support</p></> };
+          }
+        });
+        if (error.attempts > 0) {
+          setTimeout(generateQuote, 2000);
+        }
+      } else {
+        setError({ attempts: 0, message: err.message });
+      }
+      console.error('Error fetching quote:', err.message);
+    } 
   }
 
   useEffect(() => {
@@ -52,7 +71,11 @@ function QuoteGenerator({ changeColor }) {
   return (
     <div id="quote-box">
       <div className="quote-text">
-        {!currentQuote && <>Loading...</>}
+        {!currentQuote && (
+          <>
+            {error.message ? error.message : 'Loading...'}
+          </>
+        )}
         {currentQuote && (
           <>
             <FaQuoteLeft />
