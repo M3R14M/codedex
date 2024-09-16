@@ -34,7 +34,7 @@ function QuoteGenerator({ changeColor }) {
   async function generateQuote() {
     try {
       const response = await fetch(
-        'http://api.quotable.io/random?tags=technology&maxLength=100'
+        'https://m3r14m-quotable.web.val.run/random?tags=technology&maxLength=100'
       );
       const data = await response.json();
       setCurrentQuote(data.content);
